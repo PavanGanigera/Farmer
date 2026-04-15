@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: smart-farmer-app
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: node backend/server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        value: mongodb+srv://dmjaiton_db_user:iHqrxoKfRztNie6e@cluster0.wbpmbc1.mongodb.net/FarmersDB?retryWrites=true&w=majority
+      - key: JWT_SECRET
+        generateValue: true
