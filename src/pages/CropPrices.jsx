@@ -12,7 +12,8 @@ export default function CropPrices() {
   const [lastUpdated, setLastUpdated] = useState('Fetching live data...');
 
   const fetchPrices = () => {
-    axios.get('http://localhost:5000/api/data/mandi')
+    const apiURL = import.meta.env.PROD ? '/api/data/mandi' : 'http://localhost:5000/api/data/mandi';
+    axios.get(apiURL)
       .then(res => {
         // Map backend payload to component's expected structure
         const mapped = res.data.markets.map((m, i) => ({

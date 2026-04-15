@@ -17,19 +17,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // ── CORS ─────────────────────────────────────────────────────────────────────
-const allowedOrigins = [
-  'http://localhost:5173',          // Vite dev server
-  'http://localhost:4173',          // Vite preview
-  process.env.FRONTEND_URL,        // Render frontend URL (set in env)
-].filter(Boolean);
-
 app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests with no origin (mobile apps, curl, Postman)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) return callback(null, true);
-    callback(new Error(`CORS blocked: ${origin}`));
-  },
+  origin: '*', // Allow all origins for the college project demo to prevent asset blocking
   credentials: true,
 }));
 

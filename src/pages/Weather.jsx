@@ -32,7 +32,8 @@ export default function Weather() {
     try {
       // Split location string to just grab the district name (first part)
       const districtName = dist.split(',')[0].trim();
-      const res = await axios.get(`http://localhost:5000/api/data/weather?district=${districtName}`);
+      const apiURL = import.meta.env.PROD ? `/api/data/weather?district=${districtName}` : `http://localhost:5000/api/data/weather?district=${districtName}`;
+      const res = await axios.get(apiURL);
       setWeatherData(res.data);
     } catch (err) {
       console.error('Error fetching weather', err);

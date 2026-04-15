@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const AuthContext = createContext(null);
 const SESSION_KEY = 'agrismart_session';
-const API_URL = 'http://localhost:5000/api/auth';
+const API_URL = import.meta.env.PROD ? '/api/auth' : 'http://localhost:5000/api/auth';
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {

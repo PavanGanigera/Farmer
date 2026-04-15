@@ -33,12 +33,14 @@ export default function Dashboard() {
 
   useEffect(() => {
     // Fetch Market Trends
-    axios.get('http://localhost:5000/api/data/mandi')
+    const mandiAPI = import.meta.env.PROD ? '/api/data/mandi' : 'http://localhost:5000/api/data/mandi';
+    axios.get(mandiAPI)
       .then(res => setMarketTrends(res.data.markets.slice(0, 3))) // take top 3
       .catch(console.error);
 
     // Fetch Weather Data
-    axios.get(`http://localhost:5000/api/data/weather?district=${farmerDistrict}`)
+    const weatherAPI = import.meta.env.PROD ? `/api/data/weather?district=${farmerDistrict}` : `http://localhost:5000/api/data/weather?district=${farmerDistrict}`;
+    axios.get(weatherAPI)
       .then(res => setWeatherData(res.data))
       .catch(console.error);
   }, [farmerDistrict]);
