@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename);
 
 // ── CORS ─────────────────────────────────────────────────────────────────────
 app.use(cors({
-  origin: '*', // Allow all origins for the college project demo to prevent asset blocking
+  origin: true, // true reflects the exact incoming Origin header dynamically
   credentials: true,
 }));
 
